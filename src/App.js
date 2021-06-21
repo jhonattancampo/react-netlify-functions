@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 
-
+import List from './components/List';
+import withListLoading from './components/WithListLoading';
 import './App.css';
 
 function App() {
+    const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     loading: false,
     repos: null,
@@ -17,25 +19,25 @@ function App() {
           setAppState({ loading: false, repos: repos });
         });
   }, [setAppState]);
-  return (
-      <div className='App'>
-        <div className='container'>
-          <h1>My Repositories</h1>
-        </div>
-        <div className='repo-container'>
-          {appState}
-        </div>
-        <footer>
-          <div className='footer'>
-            Built{' '}
-            <span role='img' aria-label='love'>
+    return (
+        <div className='App'>
+            <div className='container'>
+                <h1>My Repositories</h1>
+            </div>
+            <div className='repo-container'>
+                <ListLoading isLoading={appState.loading} repos={appState.repos} />
+            </div>
+            <footer>
+                <div className='footer'>
+                    Built{' '}
+                    <span role='img' aria-label='love'>
             💚
           </span>{' '}
-            with by Shedrack Akintayo
-          </div>
-        </footer>
-      </div>
-  );
+                    with by Shedrack Akintayo
+                </div>
+            </footer>
+        </div>
+    );
 }
 
 export default App;
