@@ -12,7 +12,7 @@ function App() {
   });
   useEffect(() => {
     setAppState({ loading: true });
-    const apiUrl = `https://chellisite.netlify.app/.netlify/functions/search`;
+    const apiUrl = `/.netlify/functions/search`;
     fetch(apiUrl)
         .then((res) => res.json())
         .then((repos) => {
